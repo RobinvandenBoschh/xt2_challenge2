@@ -104,16 +104,23 @@ function setUpMinuteHands() {
       }
     }, 60000);
 }
+            // BEREKEN TIJD TOT HELE NIEUWE MINUUT, DAARNA GEWOON ELKE KEER MET EEN INTERVAL VAN 1 MINUUT +6deg VERPLAATSEN.
+
 
   // Move the second containers
 function moveSecondHands() {
     var containers = document.querySelectorAll('.seconds-container');
+    var startingPoint = document.querySelectorAll('.minutes-container');
+    var startingAngle = startingPoint[0].getAttribute("data-second-angle");
     setInterval(function() {
       for (var i = 0; i < containers.length; i++) {
         if (containers[i].angle === undefined) {
           containers[i].angle = 6;
         } else {
-          containers[i].angle += 6;
+            if (containers[i].angle > 360) {
+                containers[i].angle = 0;
+            }
+
         }
         containers[i].style.webkitTransform = 'rotateZ('+ containers[i].angle +'deg)';
         containers[i].style.transform = 'rotateZ('+ containers[i].angle +'deg)';

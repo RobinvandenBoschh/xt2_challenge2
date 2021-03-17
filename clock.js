@@ -1,4 +1,4 @@
-(function() {
+/*(function() {
     // Initialise any local time clocks
     setClock();
     // Start the seconds container moving
@@ -7,26 +7,25 @@
     setUpMinuteHands();
 })();
 
+
+
 (function createSecondLines(){
-    var clock = document.querySelector(".clock");
+    var clock = document.querySelector('.clock');
     var rotate = 0;
     
     var byFive = function(n) {
-      return (n / 5 === parseInt(n / 5, 10)) ? true : false;
+        return (n / 5 === parseInt(n / 5, 10)) ? true : false;
     };
-    
-    for (i=0; i < 30; i++) {
-      var span = document.createElement("span");
-     
-      if (byFive(i)) {
-        span.className = "fives";
-      }
-      
-      span.style.transform = "translate(-50%,-50%) rotate("+ rotate + "deg)";
-      clock.appendChild(span);
-      rotate += 6;
+    for (h=0; h < 30; h++) {
+        var span = document.createElement('span');
+        if (byFive(h)) {
+            span.className = 'fives';
+        }
+        span.style.transform = 'translate(-50%,-50%) rotate('+ rotate + 'deg)';
+        clock.appendChild(span);
+        rotate += 6;
     }
-  })();
+})();*/
 
 function setClock() {
     // Get the local time using JS
@@ -64,6 +63,7 @@ function setClock() {
           // If this is a minute hand, note the seconds position (to calculate minute position later)
           if (hands[j].hand === 'minutes') {
             elements[k].parentNode.setAttribute('data-second-angle', hands[j + 1].angle);
+            elements[k].parentNode.setAttribute('data-seconds-passed', seconds);
           }
       }
     }
@@ -73,45 +73,63 @@ function setClock() {
 function setUpMinuteHands() {
     // Find out how far into the minute we are
     var containers = document.querySelectorAll('.minutes-container');
-    var secondAngle = containers[0].getAttribute("data-second-angle");
-    console.log(secondAngle);
-    if (secondAngle > 0) {
+    // var secondAngle = containers[0].getAttribute('data-second-angle');
+    var secondsPassed = containers[0].getAttribute('data-seconds-passed');
+    console.log(secondsPassed);
       // Set a timeout until the end of the current minute, to move the hand
-      var delay = (((360 - secondAngle) / 6) + 0.1) * 1000;
+      // var delay = (((360 - secondAngle) / 6) + 0.1) * 1000;
+      var delay = (60 - secondsPassed) * 1000;
       console.log(delay);
       setTimeout(function() {
         moveMinuteHands(containers);
       }, delay);
-    }
 }
 
-  // Do the first minute's rotation
-  function moveMinuteHands(containers) {
+// Do the first minute's rotation
+function moveMinuteHands(containers) {
     for (var i = 0; i < containers.length; i++) {
-      containers[i].style.webkitTransform = 'rotateZ(6deg)';
-      containers[i].style.transform = 'rotateZ(6deg)';
+        containers[i].style.webkitTransform = 'rotateZ(6deg)';
+        containers[i].style.transform = 'rotateZ(6deg)';
     }
+    /*setInterval(function() {
+        var fullMinute = new Date().getSeconds();
+        console.log(fullMinute);
+        if (fullMinute == 0) {
+            for (var i = 0; i < containers.length; i++) {
+                if (containers[i].angle === undefined) {
+                    containers[i].angle = 6;
+                } else {
+                    if (containers[i].angle > 360) {
+                        containers[i].angle = 0;
+                    }
+                }
+            containers[i].style.webkitTransform = 'rotateZ('+ containers[i].angle +'deg)';
+            containers[i].style.transform = 'rotateZ('+ containers[i].angle +'deg)';
+            }
+        }
+    }, 1000);*/
     // Then continue with a 60 second interval
     setInterval(function() {
-      for (var i = 0; i < containers.length; i++) {
-        if (containers[i].angle === undefined) {
-          containers[i].angle = 12;
-        } else {
-          containers[i].angle += 6;
-        }
+        for (var i = 0; i < containers.length; i++) {
+            if (containers[i].angle === undefined) {
+                containers[i].angle = 6;
+            } else {
+                if (containers[i].angle > 360) {
+                    containers[i].angle = 0;
+                }
+            }
         containers[i].style.webkitTransform = 'rotateZ('+ containers[i].angle +'deg)';
         containers[i].style.transform = 'rotateZ('+ containers[i].angle +'deg)';
-      }
+        }
     }, 60000);
 }
-            // BEREKEN TIJD TOT HELE NIEUWE MINUUT, DAARNA GEWOON ELKE KEER MET EEN INTERVAL VAN 1 MINUUT +6deg VERPLAATSEN.
 
 
   // Move the second containers
 function moveSecondHands() {
     var containers = document.querySelectorAll('.seconds-container');
-    var startingPoint = document.querySelectorAll('.minutes-container');
-    var startingAngle = startingPoint[0].getAttribute("data-second-angle");
+    // var startingPoint = document.querySelectorAll('.minutes-container');
+    // var startingAngle = startingPoint[0].getAttribute('data-second-angle');
     setInterval(function() {
       for (var i = 0; i < containers.length; i++) {
         if (containers[i].angle === undefined) {
@@ -120,7 +138,6 @@ function moveSecondHands() {
             if (containers[i].angle > 360) {
                 containers[i].angle = 0;
             }
-
         }
         containers[i].style.webkitTransform = 'rotateZ('+ containers[i].angle +'deg)';
         containers[i].style.transform = 'rotateZ('+ containers[i].angle +'deg)';

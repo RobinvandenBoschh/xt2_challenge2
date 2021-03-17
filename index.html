@@ -13,11 +13,13 @@
         <link rel="stylesheet" href="fonts.css" type="text/css" />
         <link rel="stylesheet" href="clock.css" type="text/css" />
         <!-- Hieronder staan alle gebruikte JavaScript files gelinkt: -->
-        <script src="clock.js" defer></script>
+        <script src="clock.js"></script>
+        <script src="clockSetUp.js" defer></script>
+        <script src="background.js" defer></script>
         <title>Clock | Interplanetary Transport System Interface by SpaceX</title>
     </head>
     <body>
-        <main>
+        <main id="backgroundContainer" class="night">
             <article class="clock">
                 <div class="hours-container">
                     <div class="hours"></div>
@@ -28,6 +30,7 @@
                 <div class="seconds-container">
                     <div class="seconds"></div>
                 </div>
+                <div class="midCircle"></div>
             </article>
             <article class="calendar">
                 <!-- Datum (positionering met CSS grid) -->

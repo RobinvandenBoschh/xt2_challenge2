@@ -3,7 +3,6 @@
     background: #000 url(images/clockface4.png) no-repeat center;
     background-size: 95%;
     height: 30em;
-    /*padding-bottom: 31%;*/
     position: relative;
     width: 30em;
     left: 50%;
@@ -11,7 +10,7 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     z-index: 1;
-    box-shadow: 0 0 50px white;
+    box-shadow: 0 0 50px #fff;
 }
   
 .clock.simple:after {
@@ -70,34 +69,60 @@ span:before {
 }
 
 .hours {
-    background: #fff;
+    background-color: #000;
+    border: 0.2em solid #d6d8e4;
+    border-radius: 25%;
     height: 20%;
     left: 48.75%;
     position: absolute;
+    box-sizing: border-box;
     top: 30%;
     transform-origin: 50% 100%;
-    width: 2.5%;
+    width: 2.75%;
+    z-index: 4;
 }
 
 .minutes {
-    background: #fff;
+    background-color: #000;
+    border: 0.175em solid #d6d8e4;
+    border-radius: 25%;
     height: 40%;
     left: 49%;
     position: absolute;
+    box-sizing: border-box;
     top: 10%;
     transform-origin: 50% 100%;
     width: 2%;
+    z-index: 8;
 }
 
 .seconds {
-    background: #fff;
+    background-color: #000;
+    border: 0.15em solid #b44f2d;                 /* Kleur naam: Pantone 8924 C Color */
+    border-radius: 50%;
     height: 45%;
     left: 49.5%;
     position: absolute;
+    box-sizing: border-box;
     top: 14%;
     transform-origin: 50% 80%;
-    width: 1%;
-    z-index: 8;
+    width: 1.5%;
+    z-index: 6;
+}
+
+.midCircle {
+    background-color: #000;
+    border: 0.25em solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    box-sizing: border-box;
+    width: 4%;
+    height: 4%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 
@@ -116,24 +141,10 @@ span:before {
     animation: rotate 43200s infinite linear;
 }
 
-/*.minutes-container {
-    animation: rotate 3600s infinite linear;
+.minutes-container {
+    animation: rotate 3600s infinite steps(60);
 }
 
 .seconds-container {
-    animation: rotate 60s infinite linear;
-}*/
-
-    .minutes-container {
-        animation: rotate 3600s infinite steps(60);
-    }
-    .seconds-container {
         animation: rotate 60s infinite steps(60);
-    }
-
-/*.minutes-container {
-    transition: transform 0.3s cubic-bezier(.4,2.08,.55,.44);
-  }
-  .seconds-container {
-    transition: transform 0.2s cubic-bezier(.4,2.08,.55,.44);
-  }*/
+}

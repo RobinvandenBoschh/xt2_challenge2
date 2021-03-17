@@ -2,6 +2,15 @@
     margin: 0;
 }
 
+
+/*background-color: #002e63;*/                    /* Kleur naam: Cool black */
+/*background-color: #191f45;*/                    /* Kleur naam: Navy blue bellflower (Konkikyo) */
+/*background-color: #b44f2d;*/                    /* Kleur naam: Pantone 8924 C Color */
+/*background-color: #9c4427;*/                    /* Kleur naam: Cumin Color */
+/*background-color: #afb3c9;*/
+/*background-color: #d6d8e4;*/
+
+
 body {
     background-color: black;
 }
@@ -9,9 +18,32 @@ body {
 main {
     width: 100%;
     height: 100vh;
+}
+
+.morning {
+    background: url("images/morning1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.day {
     background: url("images/day1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: top;
+    background-position: center;
+}
+
+.evening {
+    background: url("images/evening1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.night {
+    background: url("images/night1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }

@@ -1,8 +1,8 @@
 * {
-    margin: 0;
+    margin: 0;                                    /* Standaard reset van de marges zodat ik geen last heb van de default marges */
 }
 
-
+/* Lijst met de 4 kleuren die het kleurenschema van de website bij challenge 1 bevatte (+ 2 extra kleuren lichtblauw) */
 /*background-color: #002e63;*/                    /* Kleur naam: Cool black */
 /*background-color: #191f45;*/                    /* Kleur naam: Navy blue bellflower (Konkikyo) */
 /*background-color: #b44f2d;*/                    /* Kleur naam: Pantone 8924 C Color */
@@ -16,34 +16,380 @@ body {
 }
 
 main {
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100vh;
 }
 
-.morning {
-    background: url("images/morning1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+img {
+    position: fixed;
+    z-index: 100;
 }
 
-.day {
-    background: url("images/day1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.clock {
+    display: block;
 }
 
-.evening {
-    background: url("images/evening1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.digital {
+    display: none;
+    width: 100%;
+    height: 100%;
 }
 
-.night {
-    background: url("images/night1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+
+.grid-container {
+    display: grid;                                  /* Deze regel zorgt dat het een CSS grid is. */ 
+    position: absolute;
+    grid-gap: 5px;
+    left: 50%;                                      /* Deze en de twee onderstaande regels zorgen samen ervoor dat het gehele grid altijd horizontaal gecentreerd staat op de pagina, ongeacht de breedte van het grid (dit verschilt namelijk per schermgrootte). */
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.grid-item {
+    text-align: center;
+    padding: 0 3%;
+}
+
+
+
+.switch {
+    position: fixed;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    z-index: 100;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    width: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: gray;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: #191f45;                      /* Kleur naam: Navy blue bellflower (Konkikyo) */
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #191f45;;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+  
+.slider.round {
+    border-radius: 34px;
+}
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+
+                                                  /* De afmetingen en afstanden van elementen zijn per schermgrootte anders. Ook verandert de afbeelding per schermgrootte naar een geoptimaliseerde versie van de afbeelding voor die specifieke schermgrootte. Dit zorgt dat de website zo snel mogelijk kan laden en het minder data kost dan bij het laden van hyper scherpe afbeeldingen. */
+/* smartphone */
+@media only screen and (max-device-width: 428px) and (max-device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation : portrait){ 
+  .clock, h2 {
+      margin-top: -50%;
+  }
+
+  .switch {
+      top: 3%;
+      right: 5%;
+  }
+
+  img {
+      top: 3%;
+      left: 6%;
+      height: 3%;
+  }
+
+  .grid-container {
+      bottom: 10vh;
+      width: 80%;
+  }
+
+  .item1 {
+      grid-column: 1;
+      grid-row: 1;
+  }
+
+  .item2 {
+      grid-column: 1;
+      grid-row: 2;
+  }
+
+  .item3 {
+      grid-column: 1;
+      grid-row: 3;
+  }
+
+  .morning {
+      background: url("images/morning1_w1223_h812.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .day {
+      background: url("images/day1_w1218_h812.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .evening {
+      background: url("images/evening1_w1218_h1705.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .night {
+      background: url("images/night1_w1220_h812.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+}
+
+
+/* tablet */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .clock, h2 {
+      margin-top: -25%;
+  }
+
+  .switch {
+      top: 3%;
+      right: 5%;
+  }
+
+  img {
+    top: 2.9%;
+    left: 4%;
+    height: 2.8%;
+  }
+
+  .grid-container {
+      bottom: 8vh;
+      width: 80%;
+  }
+
+  .item1 {
+      grid-column: 1;
+      grid-row: 1;
+  }
+
+  .item2 {
+      grid-column: 1;
+      grid-row: 2;
+  }
+
+  .item3 {
+      grid-column: 1;
+      grid-row: 3;
+  }
+
+  .morning {
+      background: url("images/evening1_w1366_h1912.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .day {
+      background: url("images/day1_w1366_h911.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .evening {
+      background: url("images/evening1_w1366_h1912.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .night {
+      background: url("images/night1_w1366_h909.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+}
+
+
+/* small desktop */
+@media only screen and (min-device-width : 1025px) and (max-device-width : 1439px) {
+  .clock, h2 {
+      margin-top: -7.5%;
+  }
+
+  .switch {
+      top: 5%;
+      right: 5%;
+  }
+
+  img {
+      top: 4%;
+      left: 3%;
+      width: 20%;
+  }
+
+  .grid-container {
+      bottom: 12.5vh;
+      width: 60%;
+  }
+
+  .item1 {
+      grid-column: 1;
+      grid-row: 1;
+  }
+
+  .item2 {
+      grid-column: 2;
+      grid-row: 1;
+  }
+
+  .item3 {
+      grid-column: 3;
+      grid-row: 1;
+  }
+
+  .morning {
+      background: url("images/morning1_w1440_h956.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .day {
+      background: url("images/day1_w1440_h960.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .evening {
+      background: url("images/evening1_w1440_h2016.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .night {
+      background: url("images/night1_w1440_h958.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+}
+
+
+/* large desktop */
+@media only screen and (min-device-width: 1440px) {
+  .clock, h2 {
+      margin-top: -10%;
+  }
+
+  .switch {
+      top: 5%;
+      right: 5%;
+  }
+
+  img {
+      top: 5%;
+      left: 4%;
+      width: 20%;
+  }
+
+  .grid-container {
+      bottom: 15vh;
+      width: 50%;
+  }
+
+  .item1 {
+      grid-column: 1;
+      grid-row: 1;
+  }
+
+  .item2 {
+      grid-column: 2;
+      grid-row: 1;
+  }
+
+  .item3 {
+      grid-column: 3;
+      grid-row: 1;
+  }
+
+  .morning {
+      background: url("images/morning1_w2310_h1534.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .day {
+      background: url("images/day1_w3000_h2000.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .evening {
+      background: url("images/evening1_w3000_h4200.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .night {
+      background: url("images/night1_w3000_h1996.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
 }

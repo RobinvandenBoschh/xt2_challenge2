@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">                                                                            <!-- Deze website is in het Engels geschreven (aangezien SpaceX een Amerikaans bedrijf is). -->
+<html lang="en">
     <head>
         <meta charset="utf-8" />                                                            <!-- Op deze website wordt de utf-8 character set gebruikt. -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,14 +13,21 @@
         <link rel="stylesheet" href="fonts.css" type="text/css" />
         <link rel="stylesheet" href="clock.css" type="text/css" />
         <!-- Hieronder staan alle gebruikte JavaScript files gelinkt: -->
-        <script src="clock.js"></script>
-        <script src="clockSetUp.js" defer></script>
+        <script src="clock.js" defer></script>
+        <script src="digitalClock.js"></script>
         <script src="background.js" defer></script>
-        <title>Clock | Interplanetary Transport System Interface by SpaceX</title>
+        <script src="calendar.js" defer></script>
+        <script src="toggleSwitch.js" defer></script>
+        <title>Clock | Interplanetary Transport System Interface by SpaceX</title>          <!-- Hele oninspirerende titel, ik weet het. Sorry ik wist niks beters haha -->
     </head>
     <body>
+        <img id="spacexLogo" src="images/spacex1.png" alt="SpaceX Logo" title="Made by SpaceX" />
         <main id="backgroundContainer" class="night">
-            <article class="clock">
+            <label class="switch">
+                <input type="checkbox" id="checkbox" onclick="toggleSwitch()" checked>
+                <div class="slider round"></div>
+            </label>
+            <article class="clock" id="clock">
                 <div class="hours-container">
                     <div class="hours"></div>
                 </div>
@@ -32,8 +39,22 @@
                 </div>
                 <div class="midCircle"></div>
             </article>
+            <article class="digital" id="digital">
+                <h2 id="digitalClock"></h2>
+            </article>
             <article class="calendar">
-                <!-- Datum (positionering met CSS grid) -->
+                <!-- positionering met CSS grid voor automatische uitlijning. Op de smartphone en tablet komen ze onder elkaar  -->
+                <div class="grid-container">
+                    <div class="grid-item item1">
+                        <p id="day"></p>
+                    </div>
+                    <div class="grid-item item2">
+                        <p id="month"></p>
+                    </div>
+                    <div class="grid-item item3">
+                        <p id="year"></p>
+                    </div>
+                </div>
             </article>
         </main>
     </body>

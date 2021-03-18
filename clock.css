@@ -1,20 +1,18 @@
 .clock {
     border-radius: 50%;
-    background: #000 url(images/clockface4.png) no-repeat center;
+    background: #000 url(images/clockface4.png) no-repeat center;           /* Dit is de wijzerplaat (clockface) van de klok. Ik heb deze wijzerplaat zelf gemaakt en samengesteld. */
     background-size: 95%;
-    height: 30em;
     position: relative;
-    width: 30em;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     z-index: 1;
-    box-shadow: 0 0 50px #fff;
+    box-shadow: 0 0 50px #fff;                                              /* #fff = wit. Voor het ultieme ruimtegevoel wilde ik dat de klok een witte gloed had. Dat ziet er futuristisch uit in combinatie met de achtergronden. */
 }
   
 .clock.simple:after {
-    background: #000;
+    background: #000;                                                       /* #000 = zwart */
     border-radius: 50%;
     content: "";
     position: absolute;
@@ -50,7 +48,7 @@ span {
 
 span:after {
     content: "";
-    background-color: #A0A1A4;
+    background-color: #A0A1A4;                                              /* Een kleur grijs. */
     position: absolute;
     width: 100%;
     height: 10px;
@@ -60,7 +58,7 @@ span:after {
 
 span:before {
     content: "";
-    background-color: #A0A1A4;
+    background-color: #A0A1A4;                                              /* Een kleur grijs. */
     position: absolute;
     width: 100%;
     height: 10px;
@@ -98,7 +96,7 @@ span:before {
 
 .seconds {
     background-color: #000;
-    border: 0.15em solid #b44f2d;                 /* Kleur naam: Pantone 8924 C Color */
+    border: 0.15em solid #b44f2d;                                           /* Kleur naam: Pantone 8924 C Color */
     border-radius: 50%;
     height: 45%;
     left: 49.5%;
@@ -138,13 +136,47 @@ span:before {
 
 
 .hours-container {
-    animation: rotate 43200s infinite linear;
+    animation: rotate 43200s infinite linear;                               /* De kleine wijzer moet langzaam gedurende het uur verplaatsen. */
 }
 
 .minutes-container {
-    animation: rotate 3600s infinite steps(60);
+    animation: rotate 3600s infinite steps(60);                             /* De grote wijzer moet per 3600s (= 60 minuten) in 60 stappen 360 graden (zie keyframe rotate) draaien. Dus dat zijn 60 stappen van elk 6 graden, waardoor je het gevoel krijgt dat de klok 'tikt' */
 }
 
 .seconds-container {
-        animation: rotate 60s infinite steps(60);
+        animation: rotate 60s infinite steps(60);                           /* De seconde wijzer moet per 60s (= 1 minuut) in 60 stappen 360 graden (zie keyframe rotate) draaien. Dus dat zijn 60 stappen van elk 6 graden, waardoor je het gevoel krijgt dat de klok 'tikt' */
+}
+
+
+                                                                            /* De grootte van de klok verandert per schermgrootte */
+/* smartphone */
+@media only screen and (max-device-width: 428px) and (max-device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation : portrait){ 
+    .clock {
+        height: 15em;
+        width: 15em;
+    }
+}
+
+/* tablet */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .clock {
+        height: 30em;
+        width: 30em;
+    }
+}
+
+/* small desktop */
+@media only screen and (min-device-width : 1025px) and (max-device-width : 1439px) {
+    .clock {
+        height: 30em;
+        width: 30em;
+    }
+}
+
+/* large desktop */
+@media only screen and (min-device-width: 1440px) {
+    .clock {
+        height: 30em;
+        width: 30em;
+    }
 }

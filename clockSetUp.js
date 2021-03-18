@@ -1,9 +1,9 @@
+// Deze file is uiteindelijk niet meer gebruikt omdat dit in de file clock.js gedaan wordt
+
+
 (function() {
-    // Initialise any local time clocks
     setClock();
-    // Start the seconds container moving
     moveSecondHands();
-    // Set the intial minute hand container transition, and then each subsequent step
     setUpMinuteHands();
 })();
 
